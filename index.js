@@ -1,14 +1,14 @@
 const express = require("express");
+require("dotenv").config();
 const app = express();
+
+const PORT = process.env.PORT || 4000;
 const spaceshipRoutes = require("./routes/spaceship/spaceship.route");
-const port = 3000;
 app.use(express.urlencoded({ extended: false }));
 
 app.use("/", spaceshipRoutes);
-app.get("/", (req, res) => {
-  res.send("Hello World!");
-});
 
-app.listen(port, () => {
-  console.log(`Example app listening on port ${port}`);
+const server = app.listen(PORT, () => {
+  console.log(`Example app listening on port ${PORT}`);
 });
+module.exports = { app, server };
