@@ -1,5 +1,8 @@
+const { nanoid } = require("nanoid");
+
 class SpaceShip {
   constructor(health) {
+    this._id = nanoid();
     this.health = health;
   }
   getHealth() {
