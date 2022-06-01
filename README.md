@@ -54,7 +54,8 @@ You need to pass the variable health with a numeric value in POSTMAN, the answer
 }
 ```
 ### PATCH 
-It shoots from one spaceship to another. to do so, you should pass the id of the shooter in the URI and the enemy spaceship id should be pass inside enemy variable. The answer should look like this if both id's exists:
+It shoots from one spaceship to another.
+You should pass the id of the shooter in the URI and the enemy spaceship id should be pass inside enemy variable. The answer should look like this if both id's exists:
 ```sh
 "Enemy hit!"
 ```
