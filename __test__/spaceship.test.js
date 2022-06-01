@@ -5,6 +5,7 @@ const {
   isValidHealth,
 } = require("../controllers/spaceship/spaceship.controller");
 
+//Closes server after test
 afterAll(() => {
   server.close();
 });
@@ -30,7 +31,6 @@ describe("Tests to check invalid health values", () => {
   });
   test("Test if health < 0 returns false", () => {
     let health = -10;
-    console.log(isValidHealth(-10));
     expect(isValidHealth(health)).toBeFalsy();
   });
 });
