@@ -1,5 +1,8 @@
 const SpaceShip = require("../models/spaceship/spaceship.model");
 const SpaceShipGarageSingleton = require("../models/spaceship/spaceshipgarage.model");
+const {
+  getSpaceshipById,
+} = require("../controllers/spaceship/spaceshipGarage.controller");
 const request = require("supertest");
 const { app, server } = require("../index");
 
@@ -25,6 +28,20 @@ describe("Test SpaceshipGarage class instantiation", () => {
     let spaceship1 = new SpaceShip();
     garage.parkSpaceship(spaceship1);
     expect(garage.getParkedSpaceShips()).toContain(spaceship1);
+  });
+});
+
+//Controller Test
+describe("Test SpaceshipGarage Controller", () => {
+  test("Test that spaceship is found by Id", () => {
+    let garage = new SpaceShipGarageSingleton();
+    let spaceship1 = new SpaceShip();
+    spaceship1.setHealth(20);
+    garage.parkSpaceship(spaceship1);
+    expect(getSpaceshipById(spaceship1._id)).toMatchObject({
+      _id: spaceship1._id,
+      health: "20",
+    });
   });
 });
 

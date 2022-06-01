@@ -10,16 +10,35 @@ afterAll(() => {
   server.close();
 });
 //Class TEST
-describe("Test Spaceship class instantiation", () => {
+describe("Test Spaceship class instantiation and methods", () => {
   test("Test that Spaceship is created correctly", () => {
     let newSpaceShip = new SpaceShip(100);
     expect(newSpaceShip).not.toBeNull();
   });
 
-  test("Test that Spaceship is created with correct health", () => {
+  test("Test that Spaceship is created with correct health and working", () => {
     let newSpaceShip = new SpaceShip(50);
     expect(newSpaceShip.getHealth()).toBe(50);
+  });
+
+  test("Test that Spaceship is working", () => {
+    let newSpaceShip = new SpaceShip(50);
+    let newSpaceShip2 = new SpaceShip(0);
     expect(newSpaceShip.isWorking()).toBeTruthy();
+    expect(newSpaceShip2.isWorking()).toBeFalsy();
+  });
+
+  test("Test that Spaceship life is decremented correctly", () => {
+    let newSpaceShip = new SpaceShip(50);
+    newSpaceShip.decrementLife();
+    expect(newSpaceShip.getHealth()).toBe("49");
+  });
+
+  test("Test that Spaceship shoots correctly", () => {
+    let newSpaceShip = new SpaceShip(50);
+    let newSpaceShip2 = new SpaceShip(40);
+    newSpaceShip.shoot(newSpaceShip2);
+    expect(newSpaceShip2.getHealth()).toBe("39");
   });
 });
 

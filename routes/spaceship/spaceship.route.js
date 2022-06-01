@@ -1,12 +1,17 @@
 const express = require("express");
 const router = express.Router();
 const {
-  createNewShip,
+  createNewspaceship,
 } = require("../../controllers/spaceship/spaceship.controller");
 const {
-  getSpaceShips,
+  getSpaceships,
+  attackSpaceship,
 } = require("../../controllers/spaceship/spaceshipGarage.controller");
-router.post("/api/v1/spaceship", createNewShip);
 
-router.get("/api/v1/spaceship", getSpaceShips);
+router.post("/api/v1/spaceship", createNewspaceship);
+
+router.get("/api/v1/spaceship", getSpaceships);
+
+router.patch("/api/v1/spaceship/shoot/:id", attackSpaceship);
+
 module.exports = router;
