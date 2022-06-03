@@ -1,10 +1,10 @@
-const SpaceShip = require("../models/spaceship/spaceship.model");
-const SpaceShipGarageSingleton = require("../models/spaceship/spaceshipgarage.model");
+const SpaceShip = require("../../models/spaceship/spaceship.model");
+const SpaceShipGarageSingleton = require("../../models/spaceship/spaceshipgarage.model");
 const {
   getSpaceshipById,
-} = require("../controllers/spaceship/spaceshipGarage.controller");
+} = require("../../controllers/spaceship/spaceshipGarage.controller");
 const request = require("supertest");
-const { app, server } = require("../index");
+const { app, server } = require("../../index");
 
 //Closes server after test
 afterAll(() => {

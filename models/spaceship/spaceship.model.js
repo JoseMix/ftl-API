@@ -1,9 +1,11 @@
 const { nanoid } = require("nanoid");
-
+const Weapon = require("../weapon/weapon.model");
+console.log(Weapon);
 class SpaceShip {
   constructor(health) {
     this._id = nanoid();
     this.health = health;
+    this.weapon = new Weapon();
   }
   getHealth() {
     return this.health;
@@ -20,9 +22,6 @@ class SpaceShip {
   //feature3
   decrementLife() {
     this.setHealth(this.getHealth() - 1);
-  }
-  shoot(enemy) {
-    enemy.decrementLife();
   }
 }
 

@@ -1,9 +1,9 @@
 const request = require("supertest");
-const { app, server } = require("../index");
-const SpaceShip = require("../models/spaceship/spaceship.model");
+const { app, server } = require("../../index");
+const SpaceShip = require("../../models/spaceship/spaceship.model");
 const {
   isValidHealth,
-} = require("../controllers/spaceship/spaceship.controller");
+} = require("../../controllers/spaceship/spaceship.controller");
 
 //Closes server after test
 afterAll(() => {
@@ -32,13 +32,6 @@ describe("Test Spaceship class instantiation and methods", () => {
     let newSpaceShip = new SpaceShip(50);
     newSpaceShip.decrementLife();
     expect(newSpaceShip.getHealth()).toBe("49");
-  });
-
-  test("Test that Spaceship shoots correctly", () => {
-    let newSpaceShip = new SpaceShip(50);
-    let newSpaceShip2 = new SpaceShip(40);
-    newSpaceShip.shoot(newSpaceShip2);
-    expect(newSpaceShip2.getHealth()).toBe("39");
   });
 });
 

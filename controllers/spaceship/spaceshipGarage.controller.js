@@ -22,9 +22,12 @@ const attackSpaceship = (req, res) => {
   let shooter = getSpaceshipById(req.params.id);
   let enemy = getSpaceshipById(req.body.enemy);
   if (shooter && enemy) {
-    if (enemy.isWorking()) {
-      shooter.shoot(enemy);
+    //feature5
+    if (enemy.isWorking() && shooter.isWorking()) {
+      shooter.weapon.shoot(enemy);
       res.status(200).json("Enemy hit!");
+    } else if (enemy.isWorking()) {
+      res.status(401).json("Shooter already destroyed");
     } else {
       res.status(401).json("Enemy is already destroyed");
     }
