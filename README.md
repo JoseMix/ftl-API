@@ -27,6 +27,7 @@ npm run test --Runs all the tests
 | GET | localhost:3000/api/v1/spaceship | Get all spaceships in the garage   |
 | POST | localhost:3000/api/v1/spaceship | Create a new spaceship and add to the garage  |
 | PATCH | localhost:3000/api/v1/spaceship/shoot/:id | Shoot from one spaceship A to another spaceship B   |
+| PATCH | localhost:3000/api/v1/spaceship/weapon/:id | Change the power consumed by weapon  |
 
 ### GET 
 It returns all the spaceships inside the garage, answer looks like this.
@@ -60,5 +61,7 @@ You should pass the id of the shooter in the URI and the enemy spaceship id shou
 "Enemy hit!"
 ```
 
+### PATCH
+It changes the power consumed by weapon (don´t forget that it cannot be more than weapon power needed), passing the variable power.
 
 
