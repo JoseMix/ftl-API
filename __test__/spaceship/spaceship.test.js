@@ -4,6 +4,7 @@ const SpaceShip = require("../../models/spaceship/spaceship.model");
 const {
   isValidHealth,
 } = require("../../controllers/spaceship/spaceship.controller");
+const SpaceShipGarageSingleton = require("../../models/spaceship/spaceshipgarage.model");
 
 //Closes server after test
 afterAll(() => {
@@ -33,6 +34,12 @@ describe("Test Spaceship class instantiation and methods", () => {
     newSpaceShip.decrementLife();
     expect(newSpaceShip.getHealth()).toBe("49");
   });
+
+  //test feature 8
+  test("Test if battery update powerConsumedBySpaceship properly", () => {
+    let newSpaceShip = new SpaceShip(50);
+    expect(newSpaceShip.battery.getPowerConsumedBySpaceship()).toBe(5);
+  });
 });
 
 ////Controller tests
@@ -55,5 +62,15 @@ describe("Test Spaceship endpoints", () => {
       .send({ health: 40 })
       .expect(201)
       .expect("Content-Type", /application\/json/);
+  });
+
+  test("Test if power consumed by weapon is updated correctly", async () => {
+    let newSpaceShip = new SpaceShip(100);
+    let parking = new SpaceShipGarageSingleton();
+    parking.parkSpaceship(newSpaceShip);
+    await request(app)
+      .patch(`/api/v1/spaceship/weapon/${newSpaceShip._id}`)
+      .send({ power: 3 })
+      .expect(201);
   });
 });

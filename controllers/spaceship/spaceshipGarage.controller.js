@@ -5,7 +5,6 @@ const getSpaceships = (req, res) => {
   let garage = new SpaceShipGarage();
   let spaceShipsList = garage.getParkedSpaceShips();
   if (spaceShipsList.length !== 0) {
-    console.log(spaceShipsList);
     res.status(200).json(spaceShipsList);
   } else {
     res.status(404).json("No spaceships in the garage");
@@ -24,15 +23,19 @@ const attackSpaceship = (req, res) => {
   if (shooter && enemy) {
     //feature5
     if (enemy.isWorking() && shooter.isWorking()) {
-      shooter.weapon.shoot(enemy);
-      res.status(200).json("Enemy hit!");
+      if (shooter.weapon.canShoot()) {
+        shooter.weapon.shoot(enemy);
+        res.status(200).json("Enemy hit!");
+      } else {
+        res.status(404).json("Shooter doesn't have enought battery to shoot");
+      }
     } else if (enemy.isWorking()) {
-      res.status(401).json("Shooter already destroyed");
+      res.status(404).json("Shooter already destroyed");
     } else {
-      res.status(401).json("Enemy is already destroyed");
+      res.status(404).json("Enemy is already destroyed");
     }
   } else {
-    res.status(401).json("Spaceship not found");
+    res.status(404).json("Spaceship not found");
   }
 };
 

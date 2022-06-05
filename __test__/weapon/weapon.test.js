@@ -13,4 +13,11 @@ describe("Test Weapon class instantiation and methods", () => {
     newSpaceShip.weapon.shoot(newSpaceShip2);
     expect(newSpaceShip2.getHealth()).toBe("39");
   });
+
+  //test feature 8
+  test("Test if power-consumed-by-weapon is less than weapon-power-needed, weapon can not shoot", () => {
+    let newWeapon = new Weapon();
+    newWeapon.setPowerConsumedByWeapon(3);
+    expect(newWeapon.canShoot()).toBeFalsy;
+  });
 });
