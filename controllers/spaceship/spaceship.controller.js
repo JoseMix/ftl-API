@@ -30,6 +30,8 @@ const updatePower = (req, res) => {
         .send(
           "Power consumed by weapon cannot be more than weapon power needed!"
         );
+    } else if (newPowerConsumed < 0) {
+      res.status(404).send("Power consumed by weapon cannot be negative");
     } else {
       spaceship.weapon.setPowerConsumedByWeapon(parseInt(newPowerConsumed));
       res.status(201).send("Power consumed by weapon updated correctly");
