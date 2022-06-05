@@ -23,6 +23,5 @@ class Weapon {
     this.powerConsumedByWeapon = value;
   }
 }
-//Faltan tests y feature 9 CHECKEAR QUE EL SETEO DE WEAPON POWER NEEDED NO SUPERA A POWER NOT IN USE
 
 module.exports = Weapon;
